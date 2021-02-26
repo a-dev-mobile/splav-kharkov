@@ -10,8 +10,8 @@ pd.options.display.max_rows = None
 
 pd.set_option('display.width', 1000)
 # %%
-path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
-# path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
+# path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
+path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
 
 df_info = pd.read_csv(path_info, sep=';')
 df_info.head(10)
@@ -101,12 +101,37 @@ df_main_info.head()
 df_main = df_main_info.join(chem_for_sql.df_chem[chem_for_sql.addingNameCol])
 # %%
 df_main.info()
+del_column(df_main, 'analog_')
 # %%
-df_main.head(100)
+df_main.head()
+# %%
+df_class = df_main['class_'].drop_duplicates()
+# %%
+df_class.columns = ["class_"]
+# %%
+df_class.head()
+# %%
+
+df_main.reset_index()
+# %%
+path_main_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
+path_sub_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
+
+df_main['class_'].drop_duplicates().to_json(path_sub_json_file, force_ascii=False, orient='index')
+
+df_main.to_json(path_main_json_file, force_ascii=False, orient='records')
+# %%
+
+# with open(path_json_file, 'w', encoding='utf-8') as file:
+    # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+    # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+
+
+
 # %%
 from UtilsPandas import *
 path_sql_file = 'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\materials3.db'
-save_sql(df_main, "info_chem", path_sql_file)
+# save_sql(df_main, "info_chem", path_sql_file)
 # %%
 # df_main_info.to_csv(r'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\DATA_BASE\\materials.csv', index=False,
 #                     header=True)

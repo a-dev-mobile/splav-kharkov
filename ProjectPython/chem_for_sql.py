@@ -11,14 +11,14 @@ pd.options.display.max_rows = None
 
 pd.set_option('display.width', 10000)
 # %%
-path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
-# path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+# path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
 
 df_info = pd.read_csv(path_info, sep=';')
+df_info.head(10)
 # %%
 df_info.nunique()
 # %%
-df_info.head(10)
 # %%
 del_column(df_info, 'Unnamed: 76')
 del_column(df_info, '-')

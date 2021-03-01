@@ -1,18 +1,22 @@
 # %%
+
 from functools import reduce
 
 import pandas as pd
 import numpy as np
 
 from UtilsPandas import *
+from info_for_sql import isWork
 
 pd.options.display.max_columns = None
 pd.options.display.max_rows = None
 
 pd.set_option('display.width', 10000)
 # %%
-# path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
-path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+if isWork:
+    path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+else:
+    path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
 
 df_info = pd.read_csv(path_info, sep=';')
 df_info.head(10)

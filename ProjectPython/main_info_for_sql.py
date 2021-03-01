@@ -1,8 +1,11 @@
 # %%
+
+isWork: bool = False
+# %%
+
 import pandas as pd
 import numpy as np
 
-import chem_for_sql
 from UtilsPandas import *
 
 pd.options.display.max_columns = None
@@ -10,12 +13,16 @@ pd.options.display.max_rows = None
 
 pd.set_option('display.width', 1000)
 # %%
-# path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
-path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
+
+if isWork:
+    path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
+else:
+    path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
 
 df_info = pd.read_csv(path_info, sep=';')
 df_info.head(10)
-# %%
+
+
 # %%
 del_column(df_info, 'Unnamed: 9')
 del_column(df_info, 'type')
@@ -32,15 +39,13 @@ df_info = change_column_order(df_info, 'Заменитель:', 5)
 
 df_info.head()
 
-# %%
+
 
 # %%
 df_info.nunique()
 # %%
 df_main_info = df_info.copy()
 
-# %%
-# %%
 # %%
 count_uniq = df_main_info.nunique().tolist()
 name_column = df_main_info.columns.tolist()
@@ -78,7 +83,8 @@ df_main_info = df_main_info.rename(columns={
     "Зарубежные аналоги:": "analog_",
 
 })
-# %%
+
+
 
 # %%
 name_col = 'id_'
@@ -90,10 +96,10 @@ df_main_info.info()
 
 df_main_info.dtypes
 # %%
-# %%
-# %%
+
 
 import chem_for_sql
+
 chem_for_sql.df_chem.head()
 # %%
 df_main_info.head()
@@ -114,22 +120,29 @@ df_class.head()
 
 df_main.reset_index()
 # %%
-path_main_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
-path_sub_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
 
-df_main['class_'].drop_duplicates().to_json(path_sub_json_file, force_ascii=False, orient='index')
+
+if isWork:
+    path_main_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
+    path_sub_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
+else:
+    path_main_json_file = 't:\\DEV\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
+    path_sub_json_file = 't:\\DEV\Python\\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
 
 df_main.to_json(path_main_json_file, force_ascii=False, orient='records')
+
+df_main['class_'].drop_duplicates().to_json(path_sub_json_file, force_ascii=False, orient='records')
+
 # %%
 
 # with open(path_json_file, 'w', encoding='utf-8') as file:
-    # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
-    # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
-
+# df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+# df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
 
 
 # %%
 from UtilsPandas import *
+
 path_sql_file = 'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\materials3.db'
 # save_sql(df_main, "info_chem", path_sql_file)
 # %%

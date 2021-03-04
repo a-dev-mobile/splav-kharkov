@@ -1,2 +1,2 @@
 class Constant:
-    isWork: bool = False
+    isWork: bool = True

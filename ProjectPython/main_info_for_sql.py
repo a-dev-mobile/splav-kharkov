@@ -110,7 +110,7 @@ df_main = df_main_info.join(sub_chem_for_sql.df_chem[sub_chem_for_sql.addingName
 df_main.info()
 del_column(df_main, 'analog_')
 # %%
-df_main.head()
+
 # %%
 df_type = df_main[['category_', 'type_']].copy()
 df_type = df_type.drop_duplicates()
@@ -123,8 +123,38 @@ df_category.head()
 df_type.head(2000)
 
 # %%
+# %%
+df_main.head()
+# %%
+df_main['use_'][94]
+# %%
+df_main['use_'][7]
 
-# df_main.reset_index()
+# %%
+from fuzzywuzzy import process, fuzz
+
+str2Match = df_main['use_'][101]
+strOptions = df_main['use_']
+Ratios = process.extract(str2Match,strOptions)
+print(Ratios)
+# You can also select the string with the highest matching percentage
+highest = process.extractOne(str2Match,strOptions)
+print(highest)
+
+
+
+# %%
+from fuzzywuzzy import process, fuzz
+Str1 = df_main['use_'][94]
+Str2 = df_main['use_'][7]
+Ratio = fuzz.ratio(Str1.lower(),Str2.lower())
+Partial_Ratio = fuzz.partial_ratio(Str1.lower(),Str2.lower())
+Token_Sort_Ratio = fuzz.token_sort_ratio(Str1,Str2)
+Token_Set_Ratio = fuzz.token_set_ratio(Str1,Str2)
+print(Ratio)
+print(Partial_Ratio)
+print(Token_Sort_Ratio)
+print(Token_Set_Ratio)
 # %%
 
 

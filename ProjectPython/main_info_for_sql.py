@@ -1,5 +1,8 @@
 # %%
 
+
+# %%
+
 import pandas as pd
 import numpy as np
 
@@ -15,7 +18,10 @@ pd.set_option('display.width', 1000)
 if Constant.isWork:
     path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/info/article_all_1.csv'
 else:
+
     path_info = 'd:\\trofimov\\DEV\Python\\PYTHON_CONTENT\\splav-kharkov.com\\content\\info\\article_all_1.csv'
+
+
 
 df_info = pd.read_csv(path_info, sep=';')
 df_info.head(10)
@@ -130,9 +136,11 @@ if Constant.isWork:
     path_main_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
     path_type_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
 else:
+
     path_main_json_file = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
     path_type_json_file = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\type.json'
     path_category_json_file = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\category.json'
+
 
 df_main.to_json(path_main_json_file, force_ascii=False, orient='records')
 df_type.to_json(path_type_json_file, force_ascii=False, orient='records')

@@ -2,5 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/database/class.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/database/category.json" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/database/materials.json" charset="windows-1251" />
   </component>
 </project>

@@ -1,18 +1,23 @@
 # %%
+
 from functools import reduce
 
 import pandas as pd
 import numpy as np
 
+from Constant import *
 from UtilsPandas import *
+
 
 pd.options.display.max_columns = None
 pd.options.display.max_rows = None
 
 pd.set_option('display.width', 10000)
 # %%
-# path_info = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
-path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+if Constant.isWork:
+    path_info = 'D:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/content/chem/article_all_1.csv'
+else:
+    path_info = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\content\\chem\\article_all_1.csv'
 
 df_info = pd.read_csv(path_info, sep=';')
 df_info.head(10)

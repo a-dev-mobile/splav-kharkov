@@ -134,7 +134,8 @@ df_type.head(2000)
 
 if Constant.isWork:
     path_main_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
-    path_type_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\class.json'
+    path_type_json_file = 'd:\\trofimov\\DEV\PYTHON\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\type.json'
+    path_category_json_file = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\category.json'
 else:
 
     path_main_json_file = 'd:\\trofimov\\DEV\\Python\\PYTHON_CONTENT\\splav-kharkov.com\\ProjectPython\\database\\materials.json'
@@ -147,43 +148,53 @@ df_type.to_json(path_type_json_file, force_ascii=False, orient='records')
 df_category.to_json(path_category_json_file, force_ascii=False, orient='records')
 
 # %% конверт в utf8
-
-
 with open(path_main_json_file, 'r', encoding='1251') as f:
     text = f.read()
-
 # process Unicode text
-
 with open(path_main_json_file, 'w', encoding='utf8') as f:
     f.write(text)
 
-# %%
-if Constant.isWork:
-    path_main_sql_file = 'd:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/ProjectPython/database/materials.db'
 
-else:
-
-    path_main_sql_file = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/ProjectPython/database/materials.db'
-
-# %%
-from sqlalchemy import create_engine
-
-engine = create_engine('sqlite:///' + path_main_sql_file, echo=False)
-# %%
-df_main.to_sql('materials_table', con=engine, if_exists='replace', index=False)
-# %%
-
-# save_sql(path_main_sql_file, "info_chem", path_main_sql_file)
-# with open(path_json_file, 'w', encoding='utf-8') as file:
-# df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
-# df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+with open(path_type_json_file, 'r', encoding='1251') as f:
+    text = f.read()
+# process Unicode text
+with open(path_type_json_file, 'w', encoding='utf8') as f:
+    f.write(text)
 
 
-# %%
-from UtilsPandas import *
+with open(path_category_json_file, 'r', encoding='1251') as f:
+    text = f.read()
+# process Unicode text
+with open(path_category_json_file, 'w', encoding='utf8') as f:
+    f.write(text)
 
-# path_sql_file = 'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\materials3.db'
-# save_sql(df_main, "info_chem", path_sql_file)
-# %%
-# df_main_info.to_csv(r'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\DATA_BASE\\materials.csv', index=False,
-#                     header=True)
+# # %%
+# if Constant.isWork:
+#     path_main_sql_file = 'd:/trofimov/DEV/PYTHON/PYTHON_CONTENT/splav-kharkov.com/ProjectPython/database/materials.db'
+
+# else:
+
+#     path_main_sql_file = 't:/DEV/Python/PYTHON_CONTENT/splav-kharkov.com/ProjectPython/database/materials.db'
+
+# # %%
+# from sqlalchemy import create_engine
+
+# engine = create_engine('sqlite:///' + path_main_sql_file, echo=False)
+# # %%
+# df_main.to_sql('materials_table', con=engine, if_exists='replace', index=False)
+# # %%
+
+# # save_sql(path_main_sql_file, "info_chem", path_main_sql_file)
+# # with open(path_json_file, 'w', encoding='utf-8') as file:
+# # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+# # df_main.apply(lambda x: [x.dropna()], axis=1).to_json(file, force_ascii=False, orient='index')
+
+
+# # %%
+# from UtilsPandas import *
+
+# # path_sql_file = 'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\materials3.db'
+# # save_sql(df_main, "info_chem", path_sql_file)
+# # %%
+# # df_main_info.to_csv(r'c:\\trofimov\\CLOUD\\c.dev.mobile_GoogleDisk\\DEV\\DATA_BASE\\materials.csv', index=False,
+# #                     header=True)
